@@ -1,8 +1,9 @@
-const emojis = ["😊", "😊", "😂", "😂", "🤣", "🤣", "😁", "😁", "😒", "😒", "❤️", "❤️", "👍", "👍", "😎", "😎"]
-let shuf_emojis = emojis.sort(() => (Math.random() > .5) ? 2 : -1)
+const tiles = ["./images/Beer.png", "./images/Beer.png", "./images/Donut.png", "./images/Donut.png", "./images/Hotdog.png", "./images/Hotdog.png", "./images/Lemonade.png", "./images/Lemonade.png", "./images/Pizza.png", "./images/Pizza.png", "./images/Sushi.png", "./images/Sushi.png", "./images/Taco.png", "./images/Taco.png", "./images/Icecream.png", "./images/Icecream.png"]
+let shuffledTiles = tiles.sort(() => (Math.random() > .5) ? 2 : -1)
 
 function flipTile(element) {
     element.classList.add('boxOpen')
+    console.log(element.innerHTML)
     setTimeout(function () {
         let openBoxes = document.querySelectorAll('.boxOpen')
         if (openBoxes.length > 1) {
@@ -11,7 +12,7 @@ function flipTile(element) {
                 openBoxes[1].classList.add('boxMatch')
                 openBoxes[1].classList.remove('boxOpen')
                 openBoxes[0].classList.remove('boxOpen')
-                if (document.querySelectorAll('.boxMatch').length == emojis.length) {
+                if (document.querySelectorAll('.boxMatch').length == tiles.length) {
                     alert('you win!')
                 }
             } else {
@@ -22,11 +23,14 @@ function flipTile(element) {
     }, 700)
 }
 
-for (let i = 0; i < emojis.length; i++) {
-    console.log("loop")
+for (let i = 0; i < tiles.length; i++) {
     let box = document.createElement('div')
     box.className = 'item'
-    box.innerHTML = shuf_emojis[i]
+    console.log(document.querySelector('.item'))
     box.onclick = function () { flipTile(this) }
     document.querySelector('.game').appendChild(box)
+    let picture = document.createElement('img')
+    picture.className = 'food'
+    picture.src = shuffledTiles[i]
+    document.querySelectorAll('.item')[i].appendChild(picture)
 }
