@@ -1,7 +1,7 @@
 const emojis = ["😊", "😊", "😂", "😂", "🤣", "🤣", "😁", "😁", "😒", "😒", "❤️", "❤️", "👍", "👍", "😎", "😎"]
 let shuf_emojis = emojis.sort(() => (Math.random() > .5) ? 2 : -1)
 
-function clickBox(element) {
+function flipTile(element) {
     element.classList.add('boxOpen')
     setTimeout(function () {
         let openBoxes = document.querySelectorAll('.boxOpen')
@@ -27,6 +27,6 @@ for (let i = 0; i < emojis.length; i++) {
     let box = document.createElement('div')
     box.className = 'item'
     box.innerHTML = shuf_emojis[i]
-    box.onclick = function () { clickBox(this) }
+    box.onclick = function () { flipTile(this) }
     document.querySelector('.game').appendChild(box)
 }
